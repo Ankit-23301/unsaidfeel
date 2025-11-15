@@ -1,0 +1,80 @@
+body {
+  background-image: url('IMG_5123.JPEG');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  backdrop-filter: brightness(0.8);
+  position: relative;
+  z-index: 0;
+}
+
+/* Optional dark overlay for better text visibility */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; 
+  left: 0;
+  width: 100%; 
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);  /* semi-transparent dark layer */
+  z-index: -1;
+}
+
+
+
+.container {
+  padding: 2rem;
+  max-width: 500px;
+  margin: auto;
+  /* backdrop-filter: blur(4px); */
+  background-color: transparent;
+  border-radius: 12px;
+}
+
+#logo {
+  width: 120px;
+  height: auto;
+  display: block;
+  margin: 20px auto;
+}
+
+#tagline {
+  text-align: center;
+  font-style: italic;
+  color: #ccc;
+  margin-top: -10px;
+  font-size: 16px;
+}
+
+select, textarea, input[type="email"], input[type="password"] {
+  width: 100%;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  border-radius: 1px solid rgba(255,255,255,0.3);
+  border: none;
+}
+
+button {
+  background:transparent;
+  color: white;
+  padding: 0.7rem 2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 0.3rem;
+}
+
+ul {
+  text-align: left;
+  padding-left: 0;
+}
+
+li {
+  list-style: none;
+  background: #222;
+  margin: 1rem 0;
+  padding: 1rem;
+  border-radius: 8px;
+  color: white;
+}

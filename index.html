@@ -1,0 +1,170 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UnsaidFeel – Where Emotions Find Words</title>
+
+  <!-- ✅ SEO Meta Tags -->
+  <meta name="description" content="UnsaidFeel – Express your emotions anonymously. A safe space to share feelings and connect.">
+  <meta name="keywords" content="Unsaid, emotions, anonymous, feelings, mood journal, share emotions">
+  <meta name="author" content="Ankit Dhobi">
+
+  <!-- ✅ Open Graph for social media preview -->
+  <meta property="og:title" content="UnsaidFeel – Where Emotions Find Words" />
+  <meta property="og:description" content="Express your emotions anonymously. Join a safe emotional community." />
+  <meta property="og:image" content="https://unsaidfeels.netlify.app/logo.png" />
+  <meta property="og:url" content="https://unsaidfeels.netlify.app" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="favicon.png" type="image/x-icon">
+
+  <!-- ✅ CDN for html2canvas used in card generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <!-- ✅ Styles -->
+  <style>
+    body {
+      font-family: sans-serif;
+      background-image: url('./IMG_5123.JPEG');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center;
+      position: relative;
+      z-index: 0;
+      padding: 20px;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; 
+      left: 0;
+      width: 100%; 
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+      z-index: -1;
+    }
+
+    .box, .logo-container {
+      background: white;
+      padding: 15px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.05);
+    }
+
+    textarea, select, button, input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    #cardOutput {
+      display: none;
+      margin-top: 15px;
+    }
+
+    .tagline {
+      font-style: italic;
+      color: #444;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="logo-container">
+    <img src="logo.png" alt="UnsaidFeel Logo" id="logo" width="80" />
+    <h1>UnsaidFeel 🖤</h1>
+    <p class="tagline">Where emotions find words.</p>
+    <div id="userInfo" style="font-size: 14px; color: gray;"></div>
+  </div>
+
+  <!-- 🔐 Auth Section -->
+  <div class="box" id="authSection">
+    <input type="email" id="email" placeholder="Enter your email" />
+    <input type="password" id="password" placeholder="Enter your password" />
+ <button onclick="window.login()">Login</button>
+<button onclick="window.signup()">Signup</button>
+  </div>
+
+  <!-- ✅ App Section -->
+  <div id="appSection" style="display:none;">
+    <div class="box">
+      <h3 id="challengeHeading">Today's Emotional Challenge</h3>
+      <p id="dailyChallenge">Loading challenge...</p>
+      <button onclick="useChallenge()">Use This</button>
+    </div>
+
+    <div class="box">
+      <label for="emoji">How are you feeling?</label>
+      <select id="emoji" required>
+        <option value="">😊 Choose Mood</option>
+        <option value="😊">😊 Happy</option>
+        <option value="😢">😢 Sad</option>
+        <option value="😠">😠 Angry</option>
+        <option value="😕">😕 Confused</option>
+        <option value="😌">😌 Calm</option>
+        <option value="💔">💔 Broken</option>
+      </select>
+      <textarea id="text" placeholder="Write your feeling..." required></textarea>
+      <div><input type="checkbox" id="anon" /><label for="anon">Post anonymously</label></div>
+      <button onclick="submitFeeling()">Share Emotion</button>
+    </div>
+
+    <div class="box">
+      <h4>💌 Send a Kind Message</h4>
+      <textarea id="strangerMessage" placeholder="Write a kind message..."></textarea>
+      <button onclick="sendStrangerMessage()">Send Kindness</button>
+    </div>
+
+    <div class="box">
+      <h3>🤝 Join an Unsaid Circle</h3>
+      <select id="circleSelect">
+        <option value="breakup">💔 Breakup Recovery</option>
+        <option value="overthinking">😵 Overthinking</option>
+        <option value="healing">🌱 Anxiety & Healing</option>
+      </select>
+      <textarea id="circlePost" placeholder="Write anonymously..."></textarea>
+      <button onclick="submitToCircle()">Post to Circle</button>
+      <div id="circleFeed"></div>
+    </div>
+
+    <div class="box">
+      <h3>🖼️ Create a Shareable Card</h3>
+      <textarea id="cardText" placeholder="Write what you feel..."></textarea>
+      <button onclick="generateCard()">Generate Card</button>
+      <div id="cardOutput">
+        <div id="cardPreview" style="padding: 30px; background: #fff8e6; border-radius: 12px; font-size: 18px; line-height: 1.5; font-style: italic; color: #333;"></div>
+        <br>
+        <button onclick="downloadCard()">Download as Image</button>
+      </div>
+    </div>
+
+    <div class="box" id="adminPanel" style="display:none;">
+      <h3>🔐 Admin: View Entries by UID</h3>
+      <form id="uidSearchForm">
+        <input type="text" id="uidInput" placeholder="Enter User UID" />
+        <button type="submit">Search</button>
+      </form>
+      <ul id="uidResults"></ul>
+    </div>
+
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <!-- ✅ Main App Logic -->
+  <script type="module" src="mergedscript.js"></script>
+</body>
+</html> -->
