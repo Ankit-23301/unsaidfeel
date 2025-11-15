@@ -17,16 +17,6 @@ import {
   where
 } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
-// ✅ Firebase config
-const firebaseConfig = {
-  apiKey: "AIzaSyBuljGimP55Q0c90SjVib7a3uXxnkr84Q4",
-  authDomain: "unsaid-feel.firebaseapp.com",
-  projectId: "unsaid-feel",
-  storageBucket: "unsaid-feel.appspot.com",
-  messagingSenderId: "104391126896",
-  appId: "1:104391126896:web:9673b6906c6469ae2069b5",
-  measurementId: "G-QCSM3EH7MT"
-};
 
 // ✅ Initialize App
 const app = initializeApp(firebaseConfig);
